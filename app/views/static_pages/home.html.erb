@@ -1,7 +1,12 @@
+# Using embedded Ruby
+# use a special Rails function called provide to set a different title on each page
+
+<% provide(:title, "Home") %>
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home | Ruby on Rails Tutorial Sample App</title>
+    <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
   </head>
   <body>
 
