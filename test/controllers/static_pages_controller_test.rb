@@ -15,7 +15,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     get static_pages_home_url
     assert_response :success
     # the assert_select method lets us test for the presence of a particular HTML tag
-    assert_select "title", "Home | #{@base_title}"
+    assert_select "title", "#{@base_title}"
 
   end
 
