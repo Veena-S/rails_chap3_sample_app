@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_200054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  # created_at and updated_at are of class "ActiveSupport::TimeWithZone"
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
