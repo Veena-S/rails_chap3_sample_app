@@ -55,9 +55,10 @@ class UserTest < ActiveSupport::TestCase
 
   # Also, the testing should incorporate the test for case
   # in-sensitivity. Because, email addresses are typically processed as if they were case-insensitive
+  # this is acheived by duplicate_user.email = @user.email.upcase
   test "email addresses should be unique" do
     duplicate_user = @user.dup
-    duplicate_user.email = @user.email.upcase
+    # duplicate_user.email = @user.email.upcase
     @user.save
     assert_not duplicate_user.valid?
   end
