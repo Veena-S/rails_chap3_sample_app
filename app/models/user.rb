@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # All email are converted to small case before saving it to the database
   # Befor the point where the object is saved, before_save callback is used to
   # downcase the email attribute
-  before_save { self.email = email.downcase }
+  # before_save { self.email = email.downcase }
+  before_save{ email.downcase!} # Updates the email attribute directly
   validates :name,  presence: true, length: { maximum: 50 }
   # Only those email addresses matching the regular expression are considered to be valid
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
