@@ -2,7 +2,10 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com")
+    # has_secure_password enforces validations on the virtual password and password_confirmation attributes. So those attributes has to be added.
+    @user = User.new(name: "Example User", email: "user@example.com",
+                         password: "foobar", password_confirmation: "foobar")
+
   end
 
   test "should be valid" do
