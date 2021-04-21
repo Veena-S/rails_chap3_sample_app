@@ -48,5 +48,19 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  # Testing the uniqueness of email by creating a 
+  #  duplicate user with the same email and saving it to 
+  # the database. Uniqueness can be verified only while
+  # saving to the database.
+
+  # Also, the testing should incorporate the test for case
+  # in-sensitivity. Because, email addresses are typically processed as if they were case-insensitive
+  test "email addresses should be unique" do
+    duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+
 
 end
