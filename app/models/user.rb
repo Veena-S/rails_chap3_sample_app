@@ -22,5 +22,6 @@ class User < ApplicationRecord
   #  including presence validations upon object creation and a validation requiring that they match
   # 3. An "authenticate" method that returns the user when the password is correct (and false otherwise)
   has_secure_password # Rails method
+  validates :password, presence: true, length: { minimum: 6 }
 
 end
