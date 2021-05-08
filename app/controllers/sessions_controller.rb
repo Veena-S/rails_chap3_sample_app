@@ -6,6 +6,12 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       # Log the user in and redirect to the users show page
+      # To solve "session fixation" attacks, the solution is to reset
+      #  the session immediately before logging in so that the attackers
+      # desired id gets cleared and a freshly created id ends up in the session hash
+      reset_session
+      log_in user
+      redirect_to user  # Rails automatically converts this to the route for the user’s profile page: user_url(user)
     else
       # Create an error message
       # flash[:] message will not disappear even if another request comes up.
