@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
+    # if user && user.authenticate(params[:session][:password])
+    if user&.authenticate(params[:session][:password])
       # Log the user in and redirect to the users show page
       # To solve "session fixation" attacks, the solution is to reset
       #  the session immediately before logging in so that the attackers
