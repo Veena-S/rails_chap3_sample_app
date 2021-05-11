@@ -24,4 +24,20 @@ class User < ApplicationRecord
   has_secure_password # Rails method
   validates :password, presence: true, length: { minimum: 6 }
 
+
+  # To login as a previously registered user, use fixtures
+  # Fixtures are a way of organizing data to be loaded into the test database
+  # https://www.learnenough.com/ruby-on-rails-6th-edition-tutorial/basic_login#sec-testing_layout_changes
+
+  # Returns the hash digest of the given string.
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    # the password digest is created using bcrypt. So, fixture password should be created
+    # using the same method
+    # string - string to be hashed
+    # cost - cost parameter that determines the computational cost to calculate the hash
+    BCrypt::Password.create(string, cost: cost)
+  end
+
 end
